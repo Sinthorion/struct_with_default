@@ -23,6 +23,7 @@ macro_rules! _default_impl {
 /// let user = User::default()
 /// assert_eq!(user.name, "Bob");
 /// ```
+#[macro_export]
 macro_rules! struct_with_default {
     (
         $(
