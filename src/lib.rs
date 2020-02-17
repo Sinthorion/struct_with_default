@@ -63,4 +63,22 @@ mod tests {
         assert_eq!(user.name, "Bob");
         assert_eq!(user.id, u64::default());
     }
+
+    #[test]
+    fn it_supports_leading_comma() {
+        struct_with_default! {
+            struct Foo {
+                foo: u64 = 17,
+            }
+        }
+    }
+
+    #[test]
+    fn it_supports_visibility() {
+        struct_with_default! {
+        pub struct Foo {
+            pub foo: u64
+        }
+        }
+    }
 }
