@@ -10,7 +10,7 @@
 /// use struct_with_default::struct_with_default;
 ///
 /// struct_with_default! {
-///     User {
+///     pub struct User {
 ///         id: u64,
 ///         name: String = "Bob".to_string(),
 ///     }
@@ -24,15 +24,13 @@
 #[macro_export]
 macro_rules! struct_with_default {
     (
-        $(
-            #[$meta:meta]
-        )*
-        $type:ident {
+        $( #[$meta:meta] )*
+        $visibility:vis struct $type:ident {
             $($field:ident: $fieldtype:ty $(= $default:expr)? $(,)?)*
         }
     ) => {
         $(#[$meta])*
-        struct $type {
+        $visibility struct $type {
             $($field: $fieldtype),
             *
         }
@@ -55,7 +53,7 @@ mod tests {
     fn it_works() {
 
         struct_with_default! {
-            User {
+            struct User {
                 name: String = "Bob".to_string(),
                 id: u64
             }
