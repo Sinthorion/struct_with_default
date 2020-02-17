@@ -26,12 +26,12 @@ macro_rules! struct_with_default {
     (
         $( #[$meta:meta] )*
         $visibility:vis struct $type:ident {
-            $($field:ident: $fieldtype:ty $(= $default:expr)? $(,)?)*
+            $($fieldvis:vis $field:ident: $fieldtype:ty $(= $default:expr)? ),* $(,)?
         }
     ) => {
         $(#[$meta])*
         $visibility struct $type {
-            $($field: $fieldtype),
+            $($fieldvis $field: $fieldtype),
             *
         }
         impl Default for $type {
